@@ -14,8 +14,22 @@ import Chart from "./Chart";
 import Price from "./Price";
 
 const Title = styled.h1`
-  font-size: 48px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 64px;
   color: ${(props) => props.theme.accentColor};
+`;
+
+const Back = styled.div`
+  text-align: center;
+  display: block;
+  font-size: 12px;
+  font-weight: 400;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  a {
+    padding: 7px 0px;
+    display: block;
+  }
 `;
 
 const Loader = styled.span`
@@ -169,11 +183,14 @@ function Coin() {
           {state?.name ? state.name : loading ? "Loading..." : infoData?.name}
         </title>
       </Helmet>
+      <Back>
+        <Link to={`/`}>Back</Link>
+      </Back> 
       <Header>
         <Title>
           {state?.name ? state.name : loading ? "Loading..." : infoData?.name}
         </Title>
-      </Header>
+      </Header> 
       {loading ? (
         <Loader>Loading...</Loader>
       ) : (
@@ -215,7 +232,7 @@ function Coin() {
 
           <Switch>
             <Route path={`/:coinId/price`}>
-              <Price />
+              <Price coinId={coinId}/>
             </Route>
             <Route path={`/:coinId/chart`}>
               <Chart coinId={coinId} />
